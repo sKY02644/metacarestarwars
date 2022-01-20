@@ -92,6 +92,8 @@ const start = async () => {
                 format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
             }))
             winston_logger.info(`Listening on port ${port}`)
+        }else{
+            console.log(`Listening on port ${port}`)
         }
     })
 }
