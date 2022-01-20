@@ -1,4 +1,4 @@
-import express, { Response, Request, NextFunction } from 'express'
+import express from 'express'
 import 'express-async-errors'
 import { json } from 'body-parser'
 import cors from 'cors'
@@ -28,7 +28,7 @@ app.use(helmet())
 
 app.set('trust proxy', true)
 app.use(cors({
-        origin: ['http://localhost:8080', 'http://192.168.43.45:8080', 'http://localhost:8081'],
+        origin: ['*'],
         credentials: true,
         exposedHeaders: ["set-cookie"]
     })
