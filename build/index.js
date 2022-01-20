@@ -60,24 +60,24 @@ app.all('*', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 app.use(error_handler_1.errorHandler); //
 // sequelize configs
 const options = {
-    sequelize: models_1.default.sequelize,
+    sequelize: models_1.default,
     tableName: 'metacaretesterror',
     meta: { project: 'metacaretesterrors' },
-    fields: { meta: models_1.default.Sequelize.JSON },
+    fields: { meta: models_1.default.json },
     modelOptions: { timestamps: true }, // merge model options
 };
 const port = process.env.PORT || 4546;
 const start = () => __awaiter(void 0, void 0, void 0, function* () {
-    logger_1.default.add(new SequelizeTransport(options));
     try {
+        // winston_logger.add(new SequelizeTransport(options))
         // for debuging purposes only [dev =>  development && dev => testing]
-        yield models_1.default.sequelize.authenticate();
+        yield models_1.default.authenticate();
         console.log('Connection has been established successfully.');
         // sync all models with database set to false in production for testing and development env. only use migrations for production
-        // await db.sequelize.sync({ force: true })
+        yield models_1.default.sync();
     }
     catch (error) {
-        console.error('Unable to connect to the database:', error.message);
+        console.error(error);
     }
     app.listen(port, () => {
         if (process.env.NODE_ENV !== 'production') { //

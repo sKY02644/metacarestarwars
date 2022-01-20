@@ -14,10 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_1 = require("sequelize");
 const constant_enum_1 = require("../helpers/constant-enum");
-const models_1 = __importDefault(require("../models"));
 const sequelize_2 = __importDefault(require("sequelize"));
 const axios_1 = __importDefault(require("axios"));
 const end_points_1 = require("../config/end-points");
+const Comment_1 = require("../models/mods/Comment");
 class Movie {
     /**
      * Get all movies
@@ -36,7 +36,7 @@ class Movie {
                     comment_count: 0,
                 }));
                 const movie_titles = data.map((data) => data.title);
-                const comments = yield models_1.default.Comment.findAll({
+                const comments = yield Comment_1.Comment.findAll({
                     attributes: [
                         [sequelize_2.default.fn('DISTINCT', sequelize_2.default.col('movie_title')), 'title'],
                         [sequelize_2.default.fn("COUNT", sequelize_2.default.col("movie_title")), "comment_count"]

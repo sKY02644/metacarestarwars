@@ -81,6 +81,9 @@ class Utils {
         }
         else if (total_pages === page) {
             previous = `${process.env.NODE_ENV === 'production' ? process.env.BASEURL : this.BASEURL}comment?page=${(page - 1)}`;
+            if ((page - 1) === 0) {
+                previous = null;
+            }
         }
         return {
             next,

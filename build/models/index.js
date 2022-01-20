@@ -1,39 +1,46 @@
 'use strict';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const fs = require('fs');
-const path = require('path');
-const Sequelize = require('sequelize');
-const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require(__dirname + '/../config/config.js')[env];
-console.log("-----------------------ENVIRONMENT----------------------: " + env);
-const db = {};
-const cls = require('cls-hooked');
-const namespace = cls.createNamespace('metacaretestnamespace');
+const sequelize_typescript_1 = require("sequelize-typescript");
+const cls_hooked_1 = __importDefault(require("cls-hooked"));
+const namespace = cls_hooked_1.default.createNamespace('metacaretestnamespace');
 let sequelize;
-console.log(process.env.CLEARDB_DATABASE_URL);
-if (process.env.CLEARDB_DATABASE_URL && process.env.NODE_ENV === 'production') {
-    sequelize = new Sequelize('mysql://b28c7e0f1608c2:db2987cd@us-cdbr-east-05.cleardb.net/heroku_42fbf93b3d1d2b3?reconnect=true'); // for production
+if (process.env.JAWSDB_URL && env === 'production') {
+    sequelize = new sequelize_typescript_1.Sequelize(process.env.JAWSDB_URL, {
+        define: {
+            underscored: true,
+            charset: 'utf8',
+            collate: 'utf8_general_ci',
+            freezeTableName: false,
+            timestamps: true,
+            createdAt: 'created_at',
+            updatedAt: 'updated_at',
+        }
+    });
 }
 else {
-    sequelize = new Sequelize(config.database, config.username, config.password, config);
+    sequelize = new sequelize_typescript_1.Sequelize({
+        username: 'root',
+        password: '01161391D@Maymens',
+        database: "metacaretest",
+        host: 'localhost',
+        dialect: 'mysql',
+        define: {
+            underscored: true,
+            charset: 'utf8',
+            collate: 'utf8_general_ci',
+            freezeTableName: false,
+            timestamps: true,
+            createdAt: 'created_at',
+            updatedAt: 'updated_at',
+        }
+    });
 }
-fs
-    .readdirSync(__dirname)
-    .filter((file) => {
-    return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.ts');
-})
-    .forEach((file) => {
-    const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
-    db[model.name] = model;
-});
-Object.keys(db).forEach(modelName => {
-    if (db[modelName].associate) {
-        db[modelName].associate(db);
-    }
-});
-Sequelize.useCLS(namespace);
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-db.namespace = namespace;
-exports.default = db;
+sequelize_typescript_1.Sequelize.useCLS(namespace);
+// sequelize.addModels([Comment])
+console.log(__dirname + '/**/*.ts');
+sequelize.addModels([__dirname + '/mods/*.ts']);
+exports.default = sequelize;
