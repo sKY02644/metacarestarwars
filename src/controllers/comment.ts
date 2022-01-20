@@ -21,7 +21,7 @@ export default class CommentController {
             const { movie_title, comment, commenter } = <{movie_title: string, comment: string, commenter: string}>req.body
             const ip_address = req.ip
         
-            let comment_res
+            let comment_res: Comment
     
             if(comment){
                 if(comment.length > 500) {
@@ -35,16 +35,26 @@ export default class CommentController {
                 if(!movie_title){
                     throw new BadRequestError('Movie title is required')
                 }
-        
-                comment_res = await Comment.create({
-                     movie_title,
-                     comment,
-                     ip_address,
-                     commenter
+
+                // start transation a rollback will take effect if any error
+                await db.transaction(async (t1: any) => {
+
+                    comment_res = await Comment.create({
+                         movie_title,
+                         comment,
+                         ip_address,
+                         commenter
+                    })
+
+                    // commit transaction
+                    t1.afterCommit(() => {
+                        res.send({result: comment_res, message: comment_res ? 'Comment added successfully' : 'Could not create comment', code: comment_res ? Codes.CREATED : Codes.BAD_REQUEST})
+                    })
                 })
+                    
             }
             
-            res.send({result: comment_res, message: comment_res ? 'Comment added successfully' : 'Could not create comment', code: comment_res ? Codes.CREATED : Codes.BAD_REQUEST})
+            // res.send({result: comment_res, message: comment_res ? 'Comment added successfully' : 'Could not create comment', code: comment_res ? Codes.CREATED : Codes.BAD_REQUEST})
     
         } catch (error: any) {
             res.send({error: error.message, code: Codes.BAD_REQUEST})
