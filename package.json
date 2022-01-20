@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node build/index.js",
-    "preinstall": "npm run build",
+    "postinstall": "npm run build",
     "build": "tsc",
     "dev": "ts-node-dev --poll --respawn src/index.ts",
     "migrate": "npx sequelize-cli db:migrate",
