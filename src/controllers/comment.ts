@@ -5,8 +5,9 @@ import { Codes } from '../helpers/constant-enum'
 
 
 import db from "../models"
+import { Comment } from '../models/Comment'
 
-export default class Comment {
+export default class CommentController {
 
     /**
      * Add new Comment
@@ -20,7 +21,7 @@ export default class Comment {
             const { movie_title, comment, commenter } = <{movie_title: string, comment: string, commenter: string}>req.body
             const ip_address = req.ip
         
-            let comment_res: string = ''
+            let comment_res
     
             if(comment){
                 if(comment.length > 500) {
@@ -35,7 +36,7 @@ export default class Comment {
                     throw new BadRequestError('Movie title is required')
                 }
         
-                comment_res = await db.Comment.create({
+                comment_res = await Comment.create({
                      movie_title,
                      comment,
                      ip_address,
@@ -61,7 +62,7 @@ export default class Comment {
 
             const { limit, offset, page } = Utils.paginate(req)
     
-            const comments = await db.Comment.findAndCountAll({
+            const comments = await Comment.findAndCountAll({
                 attributes: {
                     exclude: ['id', 'updated_at', 'commenter', 'movie_title']
                 },

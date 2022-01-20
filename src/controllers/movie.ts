@@ -6,6 +6,7 @@ import db from "../models"
 import sequelize from 'sequelize'
 import axios from 'axios'
 import { ENDPOINT_URL } from '../config/end-points'
+import { Comment } from '../models/Comment'
 
 export default class Movie {
 
@@ -31,7 +32,7 @@ export default class Movie {
         
             const movie_titles = data.map((data: any) => data.title)
         
-            const comments = await db.Comment.findAll({
+            const comments = await Comment.findAll({
                 attributes: [
                     [sequelize.fn('DISTINCT', sequelize.col('movie_title')), 'title'],
                     [sequelize.fn("COUNT", sequelize.col("movie_title")), "comment_count"]

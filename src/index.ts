@@ -63,24 +63,24 @@ app.use(errorHandler) //
 
 // sequelize configs
 const options = {
-    sequelize: db.sequelize, // sequelize instance [required]
+    sequelize: db.Sequelize, // sequelize instance [required]
     tableName: 'metacaretesterror', // default name
     meta: { project: 'metacaretesterrors' }, // meta object defaults
-    fields: { meta: db.Sequelize.JSON }, // merge model fields
+    fields: { meta: db.Sequelize.json }, // merge model fields
     modelOptions: { timestamps: true }, // merge model options
 }
 
 const port = process.env.PORT || 4546
 
 const start = async () => {
-    winston_logger.add(new SequelizeTransport(options))
+    // winston_logger.add(new SequelizeTransport(options))
 
     try {
         // for debuging purposes only [dev =>  development && dev => testing]
-        await db.sequelize.authenticate()
+        await db.authenticate()
         console.log('Connection has been established successfully.')
         // sync all models with database set to false in production for testing and development env. only use migrations for production
-        // await db.sequelize.sync({ force: true })
+        // await db.sync()
 
     } catch (error: any) {
         console.error('Unable to connect to the database:', error.message)
@@ -88,10 +88,11 @@ const start = async () => {
 
     app.listen(port, () => {
         if (process.env.NODE_ENV !== 'production') {//
-            winston_logger.add(new winston.transports.Console({
-                format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
-            }))
-            winston_logger.info(`Listening on port ${port}`)
+            // winston_logger.add(new winston.transports.Console({
+            //     format: winston.format.combine(winston.format.timestamp(), winston.format.json()),
+            // }))
+            // winston_logger.info(`Listening on port ${port}`)
+            console.log(`Listening on port ${port}`)
         }else{
             console.log(`Listening on port ${port}`)
         }

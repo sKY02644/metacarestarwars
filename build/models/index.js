@@ -6,7 +6,7 @@ const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
-console.dir("-----------------------ENVIRONMENT----------------------: " + config.password);
+console.log("-----------------------ENVIRONMENT----------------------: " + env);
 const db = {};
 const cls = require('cls-hooked');
 const namespace = cls.createNamespace('metacaretestnamespace');
