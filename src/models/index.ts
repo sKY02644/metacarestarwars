@@ -9,8 +9,8 @@ const namespace = cls.createNamespace('metacaretestnamespace')
 
 let sequelize: any
 
-if (process.env.CLEARDB_DATABASE_URL && env === 'production') {
-  sequelize = new Sequelize('mysql://b28c7e0f1608c2:db2987cd@us-cdbr-east-05.cleardb.net/heroku_42fbf93b3d1d2b3?reconnect=true', {
+if (process.env.JAWSDB_URL && env === 'production') {
+  sequelize = new Sequelize(process.env.JAWSDB_URL, {
     define: {
       underscored: true,
       charset: 'utf8',

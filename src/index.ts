@@ -80,7 +80,7 @@ const start = async () => {
         await db.authenticate()
         console.log('Connection has been established successfully.')
         // sync all models with database set to false in production for testing and development env. only use migrations for production
-        // await db.sync()
+        await db.sync()
 
     } catch (error: any) {
         console.error('Unable to connect to the database:', error.message)
