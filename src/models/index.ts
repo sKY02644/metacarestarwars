@@ -16,8 +16,11 @@ let sequelize: any
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config)
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config)
-  // sequelize = new Sequelize('mysql://u8exwea3m1nok4k3:o2k46htcwwoii78g@phtfaw4p6a970uc0.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/lt2ckk43o2s6umtt', config) // for production
+  if(process.env.CLEARDB_DATABASE_URL){
+    sequelize = new Sequelize('mysql://b28c7e0f1608c2:db2987cd@us-cdbr-east-05.cleardb.net/heroku_42fbf93b3d1d2b3?reconnect=true', config) // for production
+  }else{
+    sequelize = new Sequelize(config.database, config.username, config.password, config)
+  }
   // sequelize = new Sequelize('mysql://b1c8b81cf345a7:2dd9d53b@us-cdbr-east-04.cleardb.com/heroku_540ebb5287e6a03', config)
 }
 
