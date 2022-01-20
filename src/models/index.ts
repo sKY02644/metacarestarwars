@@ -2,7 +2,7 @@
 
 const env = process.env.NODE_ENV || 'development'
 import { Sequelize } from 'sequelize-typescript'
-import { Comment } from './Comment'
+import { Comment } from './mods/Comment'
 
 import cls from 'cls-hooked'
 const namespace = cls.createNamespace('metacaretestnamespace')
@@ -24,7 +24,7 @@ if (process.env.JAWSDB_URL && env === 'production') {
 } else {
   sequelize = new Sequelize({
     username: 'root',
-    password: '*************',
+    password: '01161391D@Maymens',
     database: "metacaretest",
     host: 'localhost',
     dialect: 'mysql',
@@ -42,7 +42,7 @@ if (process.env.JAWSDB_URL && env === 'production') {
 
 Sequelize.useCLS(namespace)
 
-sequelize.addModels([Comment])
-sequelize.addModels([__dirname + './models'])
+// sequelize.addModels([Comment])
+sequelize.addModels([__dirname + '/mods/**/*.ts'])
 
 export default sequelize

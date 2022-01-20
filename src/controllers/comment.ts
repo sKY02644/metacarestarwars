@@ -5,7 +5,7 @@ import { Codes } from '../helpers/constant-enum'
 
 
 import db from "../models"
-import { Comment } from '../models/Comment'
+import { Comment } from '../models/mods/Comment'
 
 export default class CommentController {
 

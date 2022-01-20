@@ -6,7 +6,7 @@ import db from "../models"
 import sequelize from 'sequelize'
 import axios from 'axios'
 import { ENDPOINT_URL } from '../config/end-points'
-import { Comment } from '../models/Comment'
+import { Comment } from '../models/mods/Comment'
 
 export default class Movie {
 

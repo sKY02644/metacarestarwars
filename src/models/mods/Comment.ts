@@ -1,6 +1,6 @@
 // @/models.ts
 import { Table, Model, Column, DataType } from "sequelize-typescript";
-import { Utils } from '../helpers/utils';
+import { Utils } from '../../helpers/utils';
 
   @Table({
     timestamps: true,
