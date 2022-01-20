@@ -46,6 +46,10 @@ sequelize.addModels([Comment])
 
 // console.log(__dirname + '/**/*.ts')
 
-sequelize.addModels([__dirname + '/mods/*.ts'])
+if(env === 'production') {
+  sequelize.addModels([__dirname + '/mods/*.js'])
+}else{
+  sequelize.addModels([__dirname + '/mods/*.ts'])
+}
 
 export default sequelize
