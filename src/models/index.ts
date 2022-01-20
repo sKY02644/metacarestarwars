@@ -16,6 +16,7 @@ let sequelize: any
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], config)
 } else {
+  console.log(process.env.CLEARDB_DATABASE_URL)
   if(process.env.CLEARDB_DATABASE_URL){
     sequelize = new Sequelize('mysql://b28c7e0f1608c2:db2987cd@us-cdbr-east-05.cleardb.net/heroku_42fbf93b3d1d2b3?reconnect=true', config) // for production
   }else{
