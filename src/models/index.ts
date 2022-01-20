@@ -24,7 +24,7 @@ if (process.env.JAWSDB_URL && env === 'production') {
 } else {
   sequelize = new Sequelize({
     username: 'root',
-    password: '01161391D@Maymens',
+    password: '**************',
     database: "metacaretest",
     host: 'localhost',
     dialect: 'mysql',
@@ -41,10 +41,6 @@ if (process.env.JAWSDB_URL && env === 'production') {
 }
 
 Sequelize.useCLS(namespace)
-
-// sequelize.addModels([Comment])
-
-// console.log(__dirname + '/**/*.ts')
 
 if(env === 'production') {
   sequelize.addModels([__dirname + '/mods/*.js'])
