@@ -5,7 +5,7 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config.js')[env];
+const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
 const cls = require('cls-hooked');
 const namespace = cls.createNamespace('metacaretestnamespace');
@@ -15,8 +15,8 @@ if (config.use_env_variable) {
 }
 else {
     console.log(process.env.CLEARDB_DATABASE_URL);
-    if (process.env.CLEARDB_DATABASE_URL) {
-        sequelize = new Sequelize('mysql://b28c7e0f1608c2:db2987cd@us-cdbr-east-05.cleardb.net/heroku_42fbf93b3d1d2b3?reconnect=true', config); // for production
+    if (process.env.CLEARDB_DATABASE_URL && process.env.NODE_ENV === 'production') {
+        sequelize = new Sequelize('mysql://b28c7e0f1608c2:db2987cd@us-cdbr-east-05.cleardb.net/heroku_42fbf93b3d1d2b3?reconnect=true'); // for production
     }
     else {
         sequelize = new Sequelize(config.database, config.username, config.password, config);

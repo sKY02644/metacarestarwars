@@ -74,7 +74,7 @@ const start = () => __awaiter(void 0, void 0, void 0, function* () {
         yield models_1.default.sequelize.authenticate();
         console.log('Connection has been established successfully.');
         // sync all models with database set to false in production for testing and development env. only use migrations for production
-        yield models_1.default.sequelize.sync({ force: true });
+        // await db.sequelize.sync({ force: true })
     }
     catch (error) {
         console.error('Unable to connect to the database:', error.message);
