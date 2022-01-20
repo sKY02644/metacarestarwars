@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
 import { Op } from 'sequelize'
-import { Codes } from 'src/helpers/constant-enum'
+import { Codes } from '../helpers/constant-enum'
 
-import db from "src/models"
+import db from "../models"
 import sequelize from 'sequelize'
 import axios from 'axios'
-import { ENDPOINT_URL } from 'src/config/end-points'
+import { ENDPOINT_URL } from '../config/end-points'
 
 export default class Movie {
 

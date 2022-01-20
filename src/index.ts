@@ -9,15 +9,15 @@ const winston = require('winston')
 require('dotenv').config()
 
 const SequelizeTransport = require('winston-transport-sequelize')
-import { errorHandler } from 'src/middlewares/error-handler'
-import { NotFoundError } from 'src/errors/not-found-error'
-import winston_logger from 'src/error-logs/logger'
+import { errorHandler } from './middlewares/error-handler'
+import { NotFoundError } from './errors/not-found-error'
+import winston_logger from './error-logs/logger'
 
-import db from 'src/models'
+import db from './models'
 
-import Comment from 'src/controllers/comment'
-import Movie from 'src/controllers/movie'
-import Character from 'src/controllers/character'
+import Comment from './controllers/comment'
+import Movie from './controllers/movie'
+import Character from './controllers/character'
 
 // initialize express app 1
 const app = express()

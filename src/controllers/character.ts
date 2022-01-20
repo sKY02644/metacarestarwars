@@ -1,12 +1,12 @@
 import { Request, Response } from 'express'
-import { Codes } from 'src/helpers/constant-enum'
+import { Codes } from '../helpers/constant-enum'
 
 import Cache from 'memory-cache'
 
 import axios from 'axios'
-import { Utils } from 'src/helpers/utils'
-import { BadRequestError } from 'src/errors/bad-request-error'
-import { ENDPOINT_URL } from 'src/config/end-points'
+import { Utils } from '../helpers/utils'
+import { BadRequestError } from '../errors/bad-request-error'
+import { ENDPOINT_URL } from '../config/end-points'
 
 export default class Character {
 

@@ -1,4 +1,4 @@
-import { Codes } from 'src/helpers/constant-enum'
+import { Codes } from '../../helpers/constant-enum'
 
 export abstract class CustomRequestError extends Error {
 

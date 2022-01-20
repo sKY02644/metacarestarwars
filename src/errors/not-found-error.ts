@@ -1,5 +1,5 @@
-import { Codes } from 'src/helpers/constant-enum';
-import { CustomRequestError } from 'src/errors/base-errors/request-error';
+import { Codes } from '../helpers/constant-enum';
+import { CustomRequestError } from '../errors/base-errors/request-error';
 
 export class NotFoundError extends CustomRequestError {
 

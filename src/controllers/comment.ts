@@ -1,10 +1,10 @@
 import { Request, Response } from 'express'
-import { Utils } from 'src/helpers/utils'
-import { BadRequestError } from 'src/errors/bad-request-error'
-import { Codes } from 'src/helpers/constant-enum'
+import { Utils } from '../helpers/utils'
+import { BadRequestError } from '../errors/bad-request-error'
+import { Codes } from '../helpers/constant-enum'
 
 
-import db from "src/models"
+import db from "../models"
 
 export default class Comment {
 
