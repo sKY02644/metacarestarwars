@@ -35,5 +35,24 @@ module.exports = {
     host: process.env.PROD_DB_HOSTNAME,
     port: process.env.PROD_DB_PORT,
     dialect: 'mysql',
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    },
+    define: {
+      underscored: true,
+      underscoredAll: true,
+      freezeTableName: false,
+      syncOnAssociation: true,
+      charset: 'utf8',
+      collate: 'utf8_general_ci',
+      classMethods: { method1: function () { } },
+      instanceMethods: { method2: function () { } },
+      timestamps: true,
+      createdAt: 'created_at',
+      updatedAt: 'updated_at'
+    }
   }
 }
