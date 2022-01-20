@@ -42,7 +42,7 @@ if (process.env.JAWSDB_URL && env === 'production') {
 
 Sequelize.useCLS(namespace)
 
-sequelize.addModels([Comment])
-sequelize.addModels([__dirname + '/mods/**/*.ts'])
+// sequelize.addModels([Comment])
+sequelize.addModels([__dirname + '/mods/*.ts'])
 
 export default sequelize
