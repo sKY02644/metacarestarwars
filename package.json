@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
+    "postinstall": "tsc",
     "dev": "ts-node-dev --poll --respawn src/index.ts",
     "migrate": "npx sequelize-cli db:migrate",
     "rollback": "npx sequelize-cli db:migrate:undo",
