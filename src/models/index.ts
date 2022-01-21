@@ -2,7 +2,6 @@
 
 const env = process.env.NODE_ENV || 'development'
 import { Sequelize } from 'sequelize-typescript'
-import { Comment } from './mods/Comment'
 
 import cls from 'cls-hooked'
 const namespace = cls.createNamespace('metacaretestnamespace')
