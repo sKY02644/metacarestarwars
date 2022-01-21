@@ -36,7 +36,7 @@ app.use(cors({
 
 app.use(json())
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     res.send({
         "Allow": "GET, POST",
         "Content-Type": "application/json",
@@ -89,7 +89,7 @@ const start = async () => {
             modelOptions: { timestamps: true }, // merge model options
         }
 
-      //  winston_logger.add(new SequelizeTransport(options))
+        // winston_logger.add(new SequelizeTransport(options))
         // for debuging purposes only [dev =>  development && dev => testing]
         await db.authenticate()
         console.log('Connection has been established successfully.')
