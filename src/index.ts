@@ -63,7 +63,7 @@ app.use(errorHandler) //
 
 // sequelize configs
 const options = {
-    sequelize: db, // sequelize instance [required]
+    sequelize: db.Sequelize, // sequelize instance [required]
     tableName: 'metacaretesterror', // default name
     meta: { project: 'metacaretesterrors' }, // meta object defaults
     fields: { meta: db.json }, // merge model fields
