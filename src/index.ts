@@ -75,7 +75,7 @@ const port = process.env.PORT || 4546
 const start = async () => {
     
     try {
-        // winston_logger.add(new SequelizeTransport(options))
+        winston_logger.add(new SequelizeTransport(options))
         // for debuging purposes only [dev =>  development && dev => testing]
         await db.authenticate()
         console.log('Connection has been established successfully.')

@@ -7,7 +7,7 @@ import { Comment } from './mods/Comment'
 import cls from 'cls-hooked'
 const namespace = cls.createNamespace('metacaretestnamespace')
 
-let sequelize: any
+let sequelize: Sequelize
 
 if (process.env.JAWSDB_URL && env === 'production') {
   sequelize = new Sequelize(process.env.JAWSDB_URL, {
@@ -24,7 +24,7 @@ if (process.env.JAWSDB_URL && env === 'production') {
 } else {
   sequelize = new Sequelize({
     username: 'root',
-    password: '01161391D@Maymens',
+    password: '*************',
     database: "metacaretest",
     host: 'localhost',
     dialect: 'mysql',
