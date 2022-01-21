@@ -36,6 +36,18 @@ app.use(cors({
 
 app.use(json())
 
+app.get('/', (req, res) => {
+    res.send({
+        "Allow": "GET, POST",
+        "Content-Type": "application/json",
+        "Routes":{
+            "comment": "https://metacarestarwars.herokuapp.com/api/comment",
+            "movie": "https://metacarestarwars.herokuapp.com/api/movies",
+            "characters": "https://metacarestarwars.herokuapp.com/api/characters",
+        }
+    })
+})
+
 /**
  * Character routes
  */
@@ -61,21 +73,23 @@ app.all('*', async (req, res) => {
 // catch all 404 errors
 app.use(errorHandler) //
 
-// sequelize configs
-const options = {
-    sequelize: db.Sequelize, // sequelize instance [required]
-    tableName: 'metacaretesterror', // default name
-    meta: { project: 'metacaretesterrors' }, // meta object defaults
-    fields: { meta: db.json }, // merge model fields
-    modelOptions: { timestamps: true }, // merge model options
-}
 
 const port = process.env.PORT || 4546
 
 const start = async () => {
     
     try {
-        // winston_logger.add(new SequelizeTransport(options))
+
+        // sequelize configs
+        const options = {
+            sequelize: db, // sequelize instance [required]
+            tableName: 'metacaretesterror', // default name
+            meta: { project: 'metacaretesterrors' }, // meta object defaults
+            fields: { meta: db.json }, // merge model fields
+            modelOptions: { timestamps: true }, // merge model options
+        }
+
+      //  winston_logger.add(new SequelizeTransport(options))
         // for debuging purposes only [dev =>  development && dev => testing]
         await db.authenticate()
         console.log('Connection has been established successfully.')
