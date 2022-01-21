@@ -53,9 +53,7 @@ export default class CommentController {
                 })
                     
             }
-            
-            // res.send({result: comment_res, message: comment_res ? 'Comment added successfully' : 'Could not create comment', code: comment_res ? Codes.CREATED : Codes.BAD_REQUEST})
-    
+                
         } catch (error: any) {
             res.send({error: error.message, code: Codes.BAD_REQUEST})
         }

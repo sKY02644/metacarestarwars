@@ -18,6 +18,7 @@ import db from './models'
 import Comment from './controllers/comment'
 import Movie from './controllers/movie'
 import Character from './controllers/character'
+import { defaults } from './controllers'
 
 // initialize express app 1
 const app = express()
@@ -36,17 +37,12 @@ app.use(cors({
 
 app.use(json())
 
-app.get('/api', (req, res) => {
-    res.send({
-        "Allow": "GET, POST",
-        "Content-Type": "application/json",
-        "Routes":{
-            "comment": "https://metacarestarwars.herokuapp.com/api/comment",
-            "movie": "https://metacarestarwars.herokuapp.com/api/movies",
-            "characters": "https://metacarestarwars.herokuapp.com/api/characters",
-        }
-    })
-})
+const port = process.env.PORT || 4546
+
+app.get('/', (req, res) => res.send(defaults))
+
+
+app.get('/api', (req, res) => res.send(defaults))
 
 /**
  * Character routes
@@ -72,9 +68,6 @@ app.all('*', async (req, res) => {
 
 // catch all 404 errors
 app.use(errorHandler) //
-
-
-const port = process.env.PORT || 4546
 
 const start = async () => {
     
